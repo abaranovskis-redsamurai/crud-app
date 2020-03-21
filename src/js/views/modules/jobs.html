@@ -1,0 +1,37 @@
+<redsam-toolbar on-create-action="[[createAction]]" on-edit-action="[[editAction]]" on-remove-action="[[removeAction]]">
+</redsam-toolbar>
+<oj-dialog style="display:none" id="editDialog" dialog-title="[[editMode]]">
+    <div slot="body">
+        <oj-validation-group id="valGroup">
+            <oj-form-layout id="ofl1" max-columns="1">
+                <oj-input-text id="jobId" label-hint="Job ID" disabled="[[jobIdDisabled]]" value="{{jobId}}"
+                    label-edge='inside'>
+                </oj-input-text>
+                <oj-input-text id="jobTitle" label-hint="Job Title" value="{{jobTitle}}" label-edge='inside'>
+                </oj-input-text>
+                <oj-input-number id="minSalary" label-hint="Minimum Salary" step="100" value="{{minSalary}}"
+                    label-edge='inside' validators="[[[minSalaryCheck]]]">
+                </oj-input-number>
+                <oj-input-number id="maxSalary" label-hint="Maximum Salary" step="100" value="{{maxSalary}}"
+                    label-edge='inside' validators="[[[maxSalaryCheck]]]">
+                </oj-input-number>
+            </oj-form-layout>
+        </oj-validation-group>
+    </div>
+    <div slot="footer">
+        <oj-button id="saveButton" on-oj-action="[[saveAction]]">Save
+        </oj-button>
+    </div>
+</oj-dialog>
+<oj-table id='t1' aria-label='Jobs Table' data='[[datasource]]' columns='{{columnArray}}' selection-mode.row='single'
+    on-selected-changed='{{selectedChangedListener}}'
+    columns-default='{"template": "cellTemplate", "headerTemplate": "headerTemplate"}' style='width: 100%;'>
+    <template slot="cellTemplate" data-oj-as="cell">
+        <oj-bind-text value="[[cell.data]]"></oj-bind-text>
+    </template>
+    <template slot="headerTemplate" data-oj-as="header">
+        <oj-bind-text value="[[header.data]]"></oj-bind-text>
+    </template>
+    <oj-paging-control id="pJobs" data="[[datasource]]" page-size="5" slot="bottom">
+    </oj-paging-control>
+</oj-table>

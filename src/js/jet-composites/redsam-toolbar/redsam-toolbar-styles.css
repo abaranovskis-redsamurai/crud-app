@@ -1,0 +1,8 @@
+redsam-toolbar:not(.oj-complete){
+  visibility: hidden;
+}
+
+redsam-toolbar{
+	min-height: 50px;
+	width: 50px;
+}
