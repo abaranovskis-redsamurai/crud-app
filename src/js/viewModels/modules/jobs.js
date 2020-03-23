@@ -123,6 +123,7 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojcollectiondataprovider', 'ojs
               contentType: 'application/vnd.oracle.adf.resourceitem+json',
               patch: 'patch',
               success: function (model, response, options) {
+                document.getElementById('t1').refresh();
                 document.getElementById('editDialog').close();
               },
               error: function (jqXHR, textStatus, errorThrown) {
@@ -136,6 +137,8 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojcollectiondataprovider', 'ojs
             wait: true,
             contentType: 'application/vnd.oracle.adf.resourceitem+json',
             success: function (model, response, options) {
+              var paging = document.getElementById('pJobs');
+              paging.lastPage();
               document.getElementById('editDialog').close();
             },
             error: function (jqXHR, textStatus, errorThrown) {
